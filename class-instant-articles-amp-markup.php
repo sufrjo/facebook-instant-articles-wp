@@ -114,7 +114,8 @@ class Instant_Articles_AMP_Markup {
 		}
 
 		$post = get_post();
-
+		//var_dump('Sufian testing');
+//var_dump($post);
 		// This array will hold the image sizes
 		$media_sizes = array();
 
@@ -147,14 +148,17 @@ class Instant_Articles_AMP_Markup {
 		}
 
 		$properties[ AMPArticle::MEDIA_SIZES_KEY ] = $media_sizes;
+		$properties[lang] = 'ar';
+		$properties[encoding] = 'UTF-8';
 
 		// Transform the post to an Instant Article.
 		$adapter = new Instant_Articles_Post( $post );
 		$article = $adapter->to_instant_article();
 		$article_html = $article->render();
+		//var_dump($article_html);
 		$amp = AMPArticle::create( $article_html, $properties );
 		echo $amp->render();
-
+		//var_dump($amp);
 		die();
 	}
 
